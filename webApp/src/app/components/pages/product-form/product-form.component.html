@@ -1,0 +1,30 @@
+<div>
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div class="input-element">
+      <label for="name">Nome</label>
+      <input id="name" formControlName="name" type="text" />
+    </div>
+
+    <div class="input-element">
+      <label for="price">Preço</label>
+      <input id="price" formControlName="price" type="number" />
+    </div>
+
+    <div class="input-element">
+      <label for="categoryId">Categoria</label>
+      <select id="categoryId" formControlName="categoryId">
+        <option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="input-element">
+      <label for="image">Imagem</label>
+      <input id="image" type="file" (change)="onFileChange($event)" />
+      <img *ngIf="selectedImage" [src]="selectedImage" alt="Preview da Imagem" />
+    </div>
+
+    <input type="submit" value="Cadastrar">
+  </form>
+</div>

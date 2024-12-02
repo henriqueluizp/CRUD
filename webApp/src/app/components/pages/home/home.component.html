@@ -1,0 +1,35 @@
+<div class="product-wrapper">
+  <div class="filter">
+    <label for="category">Filtrar por categoria:</label>
+    <select id="category" (change)="onCategoryChange($event)">
+      <option value="">Todas os itens</option>
+      <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+      </select>
+  </div>
+
+  <div class="product-container">
+    <div *ngFor="let product of filteredProducts" class="product-item">
+      <div class="image">
+        <span>Sem imagem...</span>
+        <div *ngIf="product.image">
+          <img [src]="product.image" alt="{{ product.name }}" />
+        </div>
+      </div>
+      <div>
+        <strong class="font">{{ product.name }}</strong>
+        </div>
+      <div class="category-shell">
+        <div>
+          <span class="font category-item">{{ getCategoryName(product.categoryId) }}</span>
+          </div>
+          <div>
+  <span class="font">R$ {{ product.price | number: '1.2-2' }}</span>
+  </div>
+      </div>
+      <div class="buttons">
+        <button *ngIf="product.id" (click)="onEdit(product.id)">Editar</button>
+        <button *ngIf="product.id" (click)="onDelete(product.id)">Excluir</button>
+      </div>
+    </div>
+    </div>
+</div>
